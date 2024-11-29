@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Recommendations</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='scroll.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          {% if 'user_id' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('recommend_books') }}"
+              >Recommend Books</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('rate_book') }}"
+              >Rate a Book</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{{ url_for('preference_recommendations') }}"
+              >Preference-Based Recommendations</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('account') }}">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <h1 class="mb-4 text-center">Recommended Books</h1>
+      {% if books %}
+      <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mb-4 d-flex align-items-stretch">
+          <div class="card shadow-lg border-light">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text">
+                <strong>Author:</strong> {{ book.author }}
+              </p>
+              <p class="card-text">
+                <strong>Main Genre:</strong> {{ book.main_genre }}
+              </p>
+              <p class="card-text">
+                <strong>Average Rating:</strong> {{ avg_ratings[book.id] }}
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <a class="btn" id="btn" href="{{ book.url }}" target="_blank"
+                >More Info</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="alert alert-info text-center" role="alert">
+        No recommendations available at the moment. Please rate more books to
+        receive recommendations.
+      </div>
+      {% endif %}
+
+    <button id="scrollTopBtn" class="btn btn-primary" title="Go to Top">
+      &uarr;
+    </button>
+    
+    <script src="{{ url_for('static', filename='scroll.js') }}"></script>
+  </body>
+</html>

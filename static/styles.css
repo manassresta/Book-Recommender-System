@@ -1,0 +1,88 @@
+:root{
+    --btn-bg-color: #007bff;
+    --header-color: #ffffff;
+}
+#navbar{
+    background-color: #007bff;
+}
+
+.navbar-nav .nav-item .nav-link{
+    color: #ffffff;
+}
+.navbar-nav .nav-item .nav-link:hover{
+    color: #d1d1d1;
+}
+.book-image {
+    height: 200px;
+    object-fit: cover;
+}
+h1{
+    color: var(--header-color);
+}
+.main-container {
+    padding: 20px;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+    border-radius: 0.3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.jumbotron h1, .jumbotron p {
+    color: #343a40;
+}
+
+.book-image {
+    height: 250px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.book-image:hover {
+    transform: scale(1.05);
+}
+
+.row {
+    margin-top: 30px;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+} */
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    border-radius: 0 0 10px 10px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.alert-info {
+    font-size: 1.1rem;
+}
+
+.btn{
+    background-color: var(--btn-bg-color);
+    color: rgb(254, 234, 234);
+}
+.btn:hover{
+    background-color: #246fc0;
+}

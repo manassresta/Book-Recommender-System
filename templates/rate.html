@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rate a Book</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          {% if 'user_id' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('recommend_books') }}"
+              >Recommend Books</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('rate_book') }}"
+              >Rate a Book</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{{ url_for('preference_recommendations') }}"
+              >Preference-Based Recommendations</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('account') }}">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-9">
+          <div class="card p-4 shadow-sm">
+            <h1 class="mb-4 text-center">Rate a Book</h1>
+            <form method="post">
+              <div class="form-group">
+                <label for="book_id">Book:</label>
+                <select
+                  id="book_id"
+                  name="book_id"
+                  class="form-control"
+                  required
+                >
+                  {% for book in books %}
+                  <option value="{{ book.id }}">{{ book.title }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input
+                  type="number"
+                  id="rating"
+                  name="rating"
+                  class="form-control"
+                  min="1"
+                  max="5"
+                  step="0.1"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn" id="btn" style="color: #fff">
+                Rate
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#book_id").select2({
+          placeholder: "Select a book",
+          allowClear: true,
+        });
+      });
+    </script>
+  </body>
+</html>

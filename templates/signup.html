@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+        <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                {% if 'user_id' in session %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('recommend_books') }}">Recommend Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('rate_book') }}">Rate a Book</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('preference_recommendations') }}">Preference-Based Recommendations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 shadow-lg p-4 mb-4 bg-white rounded">
+                <h1 class="text-center mb-4">Sign Up</h1>
+                <form action="{{ url_for('signup') }}" method="post">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred_genre">Preferred Genre:</label>
+                        <select class="form-control" id="preferred_genre" name="preferred_genre" required>
+                            <option value="" disabled selected>Select a genre</option>
+                            <option value="Arts, Film & Photography">Arts, Film & Photography</option>
+                            <option value="Biographies, Diaries & True Accounts">Biographies, Diaries & True Accounts</option>
+                            <option value="Business & Economics">Business & Economics</option>
+                            <option value="Children's Books">Children's Books</option>
+                            <option value="Comics & Mangas">Comics & Mangas</option>
+                            <option value="Computing, Internet & Digital Media">Computing, Internet & Digital Media</option>
+                            <option value="Crafts, Home & Lifestyle">Crafts, Home & Lifestyle</option>
+                            <option value="Crime, Thriller & Mystery">Crime, Thriller & Mystery</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Exam Preparation">Exam Preparation</option>
+                            <option value="Fantasy, Horror & Science Fiction">Fantasy, Horror & Science Fiction</option>
+                            <option value="Health, Family & Personal Development">Health, Family & Personal Development</option>
+                            <option value="Higher Education Textbooks">Higher Education Textbooks</option>
+                            <option value="History">History</option>
+                            <option value="Language, Linguistics & Writing">Language, Linguistics & Writing</option>
+                            <option value="Law">Law</option>
+                            <option value="Literature & Fiction">Literature & Fiction</option>
+                            <option value="Medicine & Health Sciences">Medicine & Health Sciences</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Reference">Reference</option>
+                            <option value="Religion">Religion</option>
+                            <option value="Romance">Romance</option>
+                            <option value="School Books">School Books</option>
+                            <option value="Science & Mathematics">Science & Mathematics</option>
+                            <option value="Sciences, Technology & Medicine">Sciences, Technology & Medicine</option>
+                            <option value="Society & Social Sciences">Society & Social Sciences</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Teen & Young Adult">Teen & Young Adult</option>
+                            <option value="Textbooks & Study Guides">Textbooks & Study Guides</option>
+                            <option value="Travel">Travel</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" style="color: #fff;">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
