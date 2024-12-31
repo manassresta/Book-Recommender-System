@@ -117,7 +117,7 @@ def recommend_books():
             if book:
                 genre = book.main_genre
                 if genre not in rated_genres:
-                    rated_genres[genre] = []
+                    rated_genres[genre] = [] 
                 rated_genres[genre].append(rating.rating)
 
         # Calculate the average rating for each genre
